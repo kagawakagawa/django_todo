@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+  <nav class="my-navbar">
+    <a class="my-navbar-brand" href="/">Todo</a>
+  </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+          <div class="col col-md-offset-3 col-md-6">
+            <nav class="panel panel-default">
+              <div class="panel-heading">タスクを追加する</div>
+              <div class="panel-body">
+                <form method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">送信</button>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+</main>
+
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
+<script>
+  flatpickr(document.getElementsByName('due_date'), {
+    locale: 'ja',
+    minDate: new Date()
+  });
+</script>
+</body>
+</html>
